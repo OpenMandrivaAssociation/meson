@@ -1,8 +1,8 @@
 Name: meson
 Version: 0.42.1
-Release: 2
+Release: 3
 Source0: https://github.com/mesonbuild/meson/archive/%{version}.tar.gz
-Source1: meson.macros
+Patch0: meson-0.42.1-macros.patcg
 Summary: A build system
 URL: http://mesonbuild.com/
 License: Apache 2
@@ -19,17 +19,15 @@ even more importantly, as user friendly as possible.
 
 %prep
 %setup -q
+%apply_patches
 
 %build
 python setup.py build
 
 %install
 python setup.py install --root=%{buildroot}
-mkdir -p %{buildroot}%{_sysconfdir}/rpm/macros.d
-cp %{SOURCE1} %{buildroot}%{_sysconfdir}/rpm/macros.d/
 
 %files
 %{_bindir}/*
 %{_prefix}/lib/python*/site-packages/meson*
 %{_mandir}/*/*
-%{_sysconfdir}/rpm/macros.d/meson.macros

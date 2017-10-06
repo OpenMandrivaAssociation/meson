@@ -1,0 +1,35 @@
+diff -Naur meson-0.42.1/data/macros.meson meson-0.42.1.tpg/data/macros.meson
+--- meson-0.42.1/data/macros.meson	2017-05-03 15:27:46.018307920 +0000
++++ meson-0.42.1.tpg/data/macros.meson	2017-10-06 18:55:20.482201160 +0000
+@@ -1,12 +1,12 @@
+ %__meson %{_bindir}/meson
+ %__meson_wrap_mode nodownload
++%_vpath_srcdir .
++%_vpath_builddir build
+ 
+ %meson \
+-    export CFLAGS="${CFLAGS:-%__global_cflags}"       \
+-    export CXXFLAGS="${CXXFLAGS:-%__global_cxxflags}" \
+-    export FFLAGS="${FFLAGS:-%__global_fflags}"       \
+-    export FCFLAGS="${FCFLAGS:-%__global_fcflags}"    \
+-    export LDFLAGS="${LDFLAGS:-%__global_ldflags}"    \
++    %setup_compile_flags                      \
++    export FCFLAGS="${FCFLAGS:-%optflags}"    \
++    export LC_ALL="${LC_ALL:-UTF-8}"          \
+     %{__meson}                              \\\
+         --buildtype=plain                   \\\
+         --prefix=%{_prefix}                 \\\
+@@ -27,10 +27,13 @@
+         %{nil}
+ 
+ %meson_build \
++    export LC_ALL="${LC_ALL:-UTF-8}"          \
+     %ninja_build -C %{_vpath_builddir}
+ 
+ %meson_install \
++    export LC_ALL="${LC_ALL:-UTF-8}"          \
+     %ninja_install -C %{_vpath_builddir}
+ 
+ %meson_test \
++    export LC_ALL="${LC_ALL:-UTF-8}"          \
+     %ninja_test -C %{_vpath_builddir}
