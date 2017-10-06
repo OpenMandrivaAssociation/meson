@@ -2,7 +2,7 @@ Name: meson
 Version: 0.42.1
 Release: 3
 Source0: https://github.com/mesonbuild/meson/archive/%{version}.tar.gz
-Patch0: meson-0.42.1-macros.patcg
+Patch0: meson-0.42.1-macros.patch
 Summary: A build system
 URL: http://mesonbuild.com/
 License: Apache 2
