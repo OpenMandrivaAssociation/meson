@@ -29,10 +29,10 @@ python setup.py build
 python setup.py install --root=%{buildroot}
 
 # install meson rpm macro helper
-install -D -m 0644 data/macros.%{name} %{buildroot}%{_sysconfdir}/rpm/macros.d/
+install -D -m 0644 data/macros.%{name} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
 
 %files
 %{_bindir}/*
 %{_prefix}/lib/python*/site-packages/meson*
 %{_mandir}/*/*
-%{_sysconfdir}/rpm/macros.d/meson.macros
+%{_sysconfdir}/rpm/macros.d/%{name}.macros
