@@ -1,6 +1,6 @@
 Name: meson
-Version: 0.43.0
-Release: 2
+Version: 0.44.0
+Release: 1
 Source0: https://github.com/mesonbuild/meson/archive/%{version}.tar.gz
 Patch0: meson-0.42.1-macros.patch
 Summary: A build system
