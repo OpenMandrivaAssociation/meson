@@ -1,10 +1,10 @@
-diff -Naur meson-0.43.0/data/macros.meson meson-0.43.0.tpg/data/macros.meson
---- meson-0.43.0/data/macros.meson	2017-10-08 19:36:06.030509456 +0000
-+++ meson-0.43.0.tpg/data/macros.meson	2017-10-19 19:42:05.294343145 +0000
-@@ -1,12 +1,12 @@
+diff -Naur meson-0.44.0/data/macros.meson meson-0.44.0.tpg/data/macros.meson
+--- meson-0.44.0/data/macros.meson	2017-10-25 18:42:24.000000000 +0000
++++ meson-0.44.0.tpg/data/macros.meson	2017-12-11 18:05:14.836059406 +0000
+@@ -1,12 +1,13 @@
  %__meson %{_bindir}/meson
  %__meson_wrap_mode nodownload
--
+ 
 +%_vpath_srcdir .
 +%_vpath_builddir build
  %meson \
@@ -20,17 +20,19 @@ diff -Naur meson-0.43.0/data/macros.meson meson-0.43.0.tpg/data/macros.meson
      %{__meson}                              \\\
          --buildtype=plain                   \\\
          --prefix=%{_prefix}                 \\\
-@@ -27,10 +27,13 @@
+@@ -27,12 +28,15 @@
          %{nil}
  
  %meson_build \
-+    export LC_ALL="en_US.UTF-8"               \
++    export LC_ALL="en_US.UTF-8"             \
      %ninja_build -C %{_vpath_builddir}
  
  %meson_install \
-+    export LC_ALL="en_US.UTF-8"               \
++    export LC_ALL="en_US.UTF-8"             \
      %ninja_install -C %{_vpath_builddir}
  
  %meson_test \
-+    export LC_ALL="en_US.UTF-8"               \
-     %ninja_test -C %{_vpath_builddir}
++    export LC_ALL="en_US.UTF-8"             \
+     %ninja_test -C %{_vpath_builddir} || \
+     { rc=$?; \
+       echo "-----BEGIN TESTLOG-----"; \
