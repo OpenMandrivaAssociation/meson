@@ -1,12 +1,12 @@
-diff -Naur meson-0.44.0/data/macros.meson meson-0.44.0.tpg/data/macros.meson
---- meson-0.44.0/data/macros.meson	2017-10-25 18:42:24.000000000 +0000
-+++ meson-0.44.0.tpg/data/macros.meson	2017-12-11 18:05:14.836059406 +0000
+diff -Naur meson-0.46.1/data/macros.meson meson-0.46.1.tpg/data/macros.meson
+--- meson-0.46.1/data/macros.meson	2018-02-21 19:11:51.000000000 +0000
++++ meson-0.46.1.tpg/data/macros.meson	2018-05-23 15:35:37.501975607 +0000
 @@ -1,12 +1,13 @@
  %__meson %{_bindir}/meson
  %__meson_wrap_mode nodownload
- 
 +%_vpath_srcdir .
 +%_vpath_builddir build
+ 
  %meson \
 -    export CFLAGS="${CFLAGS:-%__global_cflags}"       \
 -    export CXXFLAGS="${CXXFLAGS:-%__global_cxxflags}" \
@@ -34,5 +34,5 @@ diff -Naur meson-0.44.0/data/macros.meson meson-0.44.0.tpg/data/macros.meson
  %meson_test \
 +    export LC_ALL="en_US.UTF-8"             \
      %ninja_test -C %{_vpath_builddir} || \
-     { rc=$?; \
+     ( rc=$?; \
        echo "-----BEGIN TESTLOG-----"; \
