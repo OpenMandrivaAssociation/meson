@@ -10,7 +10,7 @@ Group: Development/Tools
 Requires: ninja
 Requires: python >= 3.0
 Requires: locales
-BuildRequires: python >= 3.0
+BuildRequires: python3.6
 BuildRequires: python-setuptools
 BuildArch: noarch
 
