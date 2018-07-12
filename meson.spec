@@ -36,3 +36,4 @@ install -D -m 0644 data/macros.%{name} %{buildroot}%{_sysconfdir}/rpm/macros.d/%
 %{_prefix}/lib/python*/site-packages/meson*
 %{_mandir}/*/*
 %{_sysconfdir}/rpm/macros.d/%{name}.macros
+%{_datadir}/polkit-1/actions/*.policy
