@@ -1,38 +1,33 @@
-diff -Naur meson-0.46.1/data/macros.meson meson-0.46.1.tpg/data/macros.meson
---- meson-0.46.1/data/macros.meson	2018-02-21 19:11:51.000000000 +0000
-+++ meson-0.46.1.tpg/data/macros.meson	2018-05-23 15:35:37.501975607 +0000
-@@ -1,12 +1,13 @@
+diff -Naur meson-0.48.0/data/macros.meson meson-0.48.0.tpg/data/macros.meson
+--- meson-0.48.0/data/macros.meson	2018-09-22 13:22:03.000000000 +0000
++++ meson-0.48.0.tpg/data/macros.meson	2018-09-27 16:18:28.443205690 +0000
+@@ -1,9 +1,13 @@
  %__meson %{_bindir}/meson
  %__meson_wrap_mode nodownload
+ %__meson_auto_features enabled
 +%_vpath_srcdir .
 +%_vpath_builddir build
  
  %meson \
--    export CFLAGS="${CFLAGS:-%__global_cflags}"       \
--    export CXXFLAGS="${CXXFLAGS:-%__global_cxxflags}" \
--    export FFLAGS="${FFLAGS:-%__global_fflags}"       \
--    export FCFLAGS="${FCFLAGS:-%__global_fcflags}"    \
--    export LDFLAGS="${LDFLAGS:-%__global_ldflags}"    \
-+    %setup_compile_flags                      \
-+    export FCFLAGS="${FCFLAGS:-%optflags}"    \
-+    export LANG="en_US.UTF-8"                 \
-+    export LC_ALL="en_US.UTF-8"               \
-     %{__meson}                              \\\
-         --buildtype=plain                   \\\
-         --prefix=%{_prefix}                 \\\
-@@ -27,12 +28,15 @@
-         %{nil}
+     %set_build_flags \
++    export LANG="en_US.UTF-8" \
++    export LC_ALL="en_US.UTF-8" \
+     %{shrink:%{__meson} \
+         --buildtype=plain \
+         --prefix=%{_prefix} \
+@@ -25,12 +29,15 @@
+ 	%{nil}}
  
  %meson_build \
-+    export LC_ALL="en_US.UTF-8"             \
++    export LC_ALL="en_US.UTF-8" \
      %ninja_build -C %{_vpath_builddir}
  
  %meson_install \
-+    export LC_ALL="en_US.UTF-8"             \
++    export LC_ALL="en_US.UTF-8" \
      %ninja_install -C %{_vpath_builddir}
  
  %meson_test \
-+    export LC_ALL="en_US.UTF-8"             \
++    export LC_ALL="en_US.UTF-8" \
      %ninja_test -C %{_vpath_builddir} || \
      ( rc=$?; \
        echo "-----BEGIN TESTLOG-----"; \

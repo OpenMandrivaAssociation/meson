@@ -9,6 +9,7 @@ License: Apache 2
 Group: Development/Tools
 Requires: ninja
 Requires: python >= 3.0
+Requires: python-setuptools
 Requires: locales
 BuildRequires: python >= 3.0
 BuildRequires: python-setuptools
@@ -19,8 +20,7 @@ Meson is an open source build system meant to be both extremely fast, and,
 even more importantly, as user friendly as possible.
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 
 %build
 python setup.py build
