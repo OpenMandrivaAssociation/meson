@@ -1,6 +1,6 @@
 Name: meson
 Version: 0.48.0
-Release: 1
+Release: 2
 Source0: https://github.com/mesonbuild/meson/archive/%{name}-%{version}.tar.gz
 Patch0: meson-0.42.1-macros.patch
 Summary: A build system
@@ -9,10 +9,9 @@ License: Apache 2
 Group: Development/Tools
 Requires: ninja
 Requires: python >= 3.0
-Requires: python-setuptools
-Requires: locales
+Requires: python3egg(setuptools)
 BuildRequires: python >= 3.0
-BuildRequires: python-setuptools
+BuildRequires: python3egg(setuptools)
 BuildArch: noarch
 
 %description
@@ -23,10 +22,10 @@ even more importantly, as user friendly as possible.
 %autosetup -p1
 
 %build
-python setup.py build
+%py3_build
 
 %install
-python setup.py install --root=%{buildroot}
+%py3_install
 
 # install meson rpm macro helper
 install -D -m 0644 data/macros.%{name} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
