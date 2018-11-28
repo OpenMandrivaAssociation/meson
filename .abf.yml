@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   meson-0.47.1.tar.gz: 1ddb2c04830430c8770f115ee6572db0e8f48caf
+sources:
+  meson-0.47.2.tar.gz: 31e9ba81a1026e143b7fd8ae132eb5e46f7d89ba

@@ -1,5 +1,5 @@
 Name: meson
-Version: 0.47.1
+Version: 0.47.2
 Release: 1
 Source0: https://github.com/mesonbuild/meson/archive/%{name}-%{version}.tar.gz
 Patch0: meson-0.42.1-macros.patch
@@ -23,10 +23,10 @@ even more importantly, as user friendly as possible.
 %apply_patches
 
 %build
-python setup.py build
+python3.6 setup.py build
 
 %install
-python setup.py install --root=%{buildroot}
+python3.6 setup.py install --root=%{buildroot}
 
 # install meson rpm macro helper
 install -D -m 0644 data/macros.%{name} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
@@ -36,3 +36,4 @@ install -D -m 0644 data/macros.%{name} %{buildroot}%{_sysconfdir}/rpm/macros.d/%
 %{_prefix}/lib/python*/site-packages/meson*
 %{_mandir}/*/*
 %{_sysconfdir}/rpm/macros.d/%{name}.macros
+%{_datadir}/polkit-1/actions/*.policy
