@@ -1,3 +1,5 @@
+%define __python_requires %{nil}
+
 Name: meson
 Version: 0.47.2
 Release: 1
@@ -8,7 +10,7 @@ URL: http://mesonbuild.com/
 License: Apache 2
 Group: Development/Tools
 Requires: ninja
-Requires: python >= 3.0
+Requires: python3.6
 Requires: locales
 BuildRequires: python3.6
 BuildRequires: python-setuptools
