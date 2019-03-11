@@ -1,6 +1,6 @@
-diff -Naur meson-0.48.0/data/macros.meson meson-0.48.0.tpg/data/macros.meson
---- meson-0.48.0/data/macros.meson	2018-09-22 13:22:03.000000000 +0000
-+++ meson-0.48.0.tpg/data/macros.meson	2018-09-27 16:18:28.443205690 +0000
+diff -Naur meson-0.50.0/data/macros.meson meson-0.50.0.tpg/data/macros.meson
+--- meson-0.50.0/data/macros.meson	2019-02-07 09:08:55.000000000 +0000
++++ meson-0.50.0.tpg/data/macros.meson	2019-03-11 14:58:44.031000000 +0000
 @@ -1,9 +1,13 @@
  %__meson %{_bindir}/meson
  %__meson_wrap_mode nodownload
@@ -15,7 +15,7 @@ diff -Naur meson-0.48.0/data/macros.meson meson-0.48.0.tpg/data/macros.meson
      %{shrink:%{__meson} \
          --buildtype=plain \
          --prefix=%{_prefix} \
-@@ -25,12 +29,15 @@
+@@ -25,10 +29,13 @@
  	%{nil}}
  
  %meson_build \
@@ -28,6 +28,4 @@ diff -Naur meson-0.48.0/data/macros.meson meson-0.48.0.tpg/data/macros.meson
  
  %meson_test \
 +    export LC_ALL="en_US.UTF-8" \
-     %ninja_test -C %{_vpath_builddir} || \
-     ( rc=$?; \
-       echo "-----BEGIN TESTLOG-----"; \
+     %ninja_test -C %{_vpath_builddir}
