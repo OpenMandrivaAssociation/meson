@@ -1,5 +1,5 @@
 Name: meson
-Version: 0.49.2
+Version: 0.50.0
 Release: 1
 Source0: https://github.com/mesonbuild/meson/archive/%{name}-%{version}.tar.gz
 Patch0: meson-0.42.1-macros.patch
