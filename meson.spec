@@ -1,18 +1,19 @@
+Summary: A fast build system
 Name: meson
 Version: 0.51.0
 Release: 1
-Source0: https://github.com/mesonbuild/meson/archive/%{name}-%{version}.tar.gz
-Patch0: meson-0.42.1-macros.patch
-Summary: A build system
 URL: http://mesonbuild.com/
 License: Apache 2
 Group: Development/Tools
-Requires: ninja
-Requires: python >= 3.0
-Requires: python3egg(setuptools)
+Source0: https://github.com/mesonbuild/meson/archive/%{name}-%{version}.tar.gz
+Patch0: meson-0.42.1-macros.patch
 BuildRequires: python >= 3.0
 BuildRequires: python3egg(setuptools)
 BuildArch: noarch
+Requires: ninja
+Requires: python >= 3.0
+Requires: python3egg(setuptools)
+Requires: glibc
 
 %description
 Meson is an open source build system meant to be both extremely fast, and,

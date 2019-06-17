@@ -1,12 +1,16 @@
-diff -Naur meson-0.50.0/data/macros.meson meson-0.50.0.tpg/data/macros.meson
---- meson-0.50.0/data/macros.meson	2019-02-07 09:08:55.000000000 +0000
-+++ meson-0.50.0.tpg/data/macros.meson	2019-03-11 14:58:44.031000000 +0000
-@@ -1,9 +1,13 @@
+diff -Naur meson-0.51.0/data/macros.meson meson-0.51.0.tpg/data/macros.meson
+--- meson-0.51.0/data/macros.meson	2019-05-02 18:59:50.000000000 +0000
++++ meson-0.51.0.tpg/data/macros.meson	2019-06-17 09:21:48.788289971 +0000
+@@ -1,6 +1,8 @@
  %__meson %{_bindir}/meson
  %__meson_wrap_mode nodownload
  %__meson_auto_features enabled
 +%_vpath_srcdir .
 +%_vpath_builddir build
+ 
+ %_smp_mesonflags %([ -z "$MESON_BUILD_NCPUS" ] \\\
+ 	&& MESON_BUILD_NCPUS="`/usr/bin/getconf _NPROCESSORS_ONLN`"; \\\
+@@ -10,6 +12,8 @@
  
  %meson \
      %set_build_flags \
@@ -15,7 +19,7 @@ diff -Naur meson-0.50.0/data/macros.meson meson-0.50.0.tpg/data/macros.meson
      %{shrink:%{__meson} \
          --buildtype=plain \
          --prefix=%{_prefix} \
-@@ -25,10 +29,13 @@
+@@ -31,12 +35,15 @@
  	%{nil}}
  
  %meson_build \
@@ -28,4 +32,6 @@ diff -Naur meson-0.50.0/data/macros.meson meson-0.50.0.tpg/data/macros.meson
  
  %meson_test \
 +    export LC_ALL="en_US.UTF-8" \
-     %ninja_test -C %{_vpath_builddir}
+     %{shrink: %{__meson} test \
+         -C %{_vpath_builddir} \
+         %{?_smp_mesonflags} \
