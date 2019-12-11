@@ -1,7 +1,7 @@
 Summary: A fast build system
 Name: meson
 Version: 0.52.1
-Release: 1
+Release: 2
 URL: http://mesonbuild.com/
 License: Apache 2
 Group: Development/Tools
