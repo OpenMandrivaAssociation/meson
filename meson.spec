@@ -23,10 +23,10 @@ even more importantly, as user friendly as possible.
 %autosetup -p1
 
 %build
-%py_build
+%py3_build
 
 %install
-%py_install
+%py3_install
 
 # install meson rpm macro helper
 install -D -m 0644 data/macros.%{name} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
