@@ -1,6 +1,6 @@
 Summary: A fast build system
 Name: meson
-Version: 0.53.2
+Version: 0.54.0
 Release: 1
 URL: http://mesonbuild.com/
 License: Apache 2
@@ -23,10 +23,10 @@ even more importantly, as user friendly as possible.
 %autosetup -p1
 
 %build
-%py3_build
+%py_build
 
 %install
-%py3_install
+%py_install
 
 # install meson rpm macro helper
 install -D -m 0644 data/macros.%{name} %{buildroot}%{_sysconfdir}/rpm/macros.d/%{name}.macros
