@@ -26,7 +26,7 @@ diff -up meson-0.54.2/data/macros.meson.omv~ meson-0.54.2/data/macros.meson
 +        --sharedstatedir=%{_sharedstatedir} \
 +        --wrap-mode=%{__meson_wrap_mode} \
 +        --auto-features=%{__meson_auto_features} \
-+        %{_vpath_srcdir} %{_vpath_builddir} \
++        %{_vpath_srcdir} %{_vpath_builddir}32 \
 +	%{nil}}
 +
  %meson_build \
