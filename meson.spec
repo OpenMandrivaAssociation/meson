@@ -1,7 +1,7 @@
 Summary: A software build system
 Name: meson
 Version: 0.54.2
-Release: 3
+Release: 4
 URL: http://mesonbuild.com/
 License: Apache 2
 Group: Development/Tools
@@ -14,7 +14,6 @@ BuildArch: noarch
 Requires: ninja
 Requires: python >= 3.0
 Requires: python3dist(setuptools)
-Requires: glibc
 
 %description
 Meson is an open source build system meant to be fast and
