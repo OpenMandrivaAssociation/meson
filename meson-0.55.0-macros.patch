@@ -1,0 +1,40 @@
+diff -uraN meson-0.55.0/data/macros.meson omv-meson-0.55.0/data/macros.meson
+--- meson-0.55.0/data/macros.meson	2020-07-12 16:25:51.000000000 +0200
++++ omv-meson-0.55.0/data/macros.meson	2020-07-13 21:28:14.744413145 +0200
+@@ -1,9 +1,13 @@
+ %__meson %{_bindir}/meson
+ %__meson_wrap_mode nodownload
+ %__meson_auto_features enabled
++%_vpath_srcdir .
++%_vpath_builddir build
+ 
+ %meson \
+     %set_build_flags \
++    export LANG="en_US.UTF-8" \
++    export LC_ALL="en_US.UTF-8" \
+     %{shrink:%{__meson} \
+         --buildtype=plain \
+         --prefix=%{_prefix} \
+@@ -25,6 +29,7 @@
+         %{nil}}
+ 
+ %meson_build \
++    export LC_ALL="en_US.UTF-8" \
+     %{shrink:%{__meson} compile \
+         -C %{_vpath_builddir} \
+         -j %{_smp_build_ncpus} \
+@@ -32,12 +37,14 @@
+         %{nil}}
+ 
+ %meson_install \
++    export LC_ALL="en_US.UTF-8" \
+     %{shrink:DESTDIR=%{buildroot} %{__meson} install \
+         -C %{_vpath_builddir} \
+         --no-rebuild \
+         %{nil}}
+ 
+ %meson_test \
++    export LC_ALL="en_US.UTF-8" \
+     %{shrink:%{__meson} test \
+         -C %{_vpath_builddir} \
+         --num-processes %{_smp_build_ncpus} \
