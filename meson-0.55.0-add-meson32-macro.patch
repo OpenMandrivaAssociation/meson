@@ -1,7 +1,7 @@
 diff -uraN meson-0.55.0/data/macros.meson omv-meson-0.55.0/data/macros.meson
 --- meson-0.55.0/data/macros.meson	2020-07-12 16:25:51.000000000 +0200
-+++ omv-meson-0.55.0/data/macros.meson	2020-07-13 21:35:25.079211019 +0200
-@@ -24,6 +24,30 @@
++++ omv-meson-0.55.0/data/macros.meson	2020-07-13 21:45:03.541833515 +0200
+@@ -24,6 +24,32 @@
          %{_vpath_srcdir} %{_vpath_builddir} \
          %{nil}}
  
@@ -28,6 +28,8 @@ diff -uraN meson-0.55.0/data/macros.meson omv-meson-0.55.0/data/macros.meson
 +            --auto-features=%{__meson_auto_features} \
 +            %{_vpath_srcdir} %{_vpath_builddir}32 \
 +    	%{nil}}
++
++
 +
  %meson_build \
      %{shrink:%{__meson} compile \
