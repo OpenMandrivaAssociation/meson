@@ -1,16 +1,12 @@
-diff -Naur meson-0.51.0/data/macros.meson meson-0.51.0.tpg/data/macros.meson
---- meson-0.51.0/data/macros.meson	2019-05-02 18:59:50.000000000 +0000
-+++ meson-0.51.0.tpg/data/macros.meson	2019-06-17 09:21:48.788289971 +0000
-@@ -1,6 +1,8 @@
+diff -up meson-0.55.3/data/macros.meson.1~ meson-0.55.3/data/macros.meson
+--- meson-0.55.3/data/macros.meson.1~	2020-09-11 11:51:57.000000000 +0200
++++ meson-0.55.3/data/macros.meson	2020-10-20 20:53:09.142122706 +0200
+@@ -1,9 +1,13 @@
  %__meson %{_bindir}/meson
  %__meson_wrap_mode nodownload
  %__meson_auto_features enabled
 +%_vpath_srcdir .
 +%_vpath_builddir build
- 
- %_smp_mesonflags %([ -z "$MESON_BUILD_NCPUS" ] \\\
- 	&& MESON_BUILD_NCPUS="`/usr/bin/getconf _NPROCESSORS_ONLN`"; \\\
-@@ -10,6 +12,8 @@
  
  %meson \
      %set_build_flags \
@@ -19,19 +15,19 @@ diff -Naur meson-0.51.0/data/macros.meson meson-0.51.0.tpg/data/macros.meson
      %{shrink:%{__meson} \
          --buildtype=plain \
          --prefix=%{_prefix} \
-@@ -31,12 +35,15 @@
- 	%{nil}}
+@@ -25,6 +29,7 @@
+         %{nil}}
  
  %meson_build \
 +    export LC_ALL="en_US.UTF-8" \
-     %ninja_build -C %{_vpath_builddir}
+     %{shrink:%{__meson} compile \
+         -C %{_vpath_builddir} \
+         -j %{_smp_build_ncpus} \
+@@ -32,6 +37,7 @@
+         %{nil}}
  
  %meson_install \
 +    export LC_ALL="en_US.UTF-8" \
-     %ninja_install -C %{_vpath_builddir}
- 
- %meson_test \
-+    export LC_ALL="en_US.UTF-8" \
-     %{shrink: %{__meson} test \
+     %{shrink:DESTDIR=%{buildroot} %{__meson} install \
          -C %{_vpath_builddir} \
-         %{?_smp_mesonflags} \
+         --no-rebuild \
