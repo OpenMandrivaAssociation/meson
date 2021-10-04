@@ -1,7 +1,7 @@
 Summary: A software build system
 Name: meson
-Version:	0.58.2
-Release:	1
+Version: 0.59.2
+Release: 1
 URL: http://mesonbuild.com/
 License: Apache 2
 Group: Development/Tools
@@ -29,11 +29,13 @@ user friendly.
 %py_install
 
 # install meson rpm macro helper
-install -D -m 0644 data/macros.%{name} %{buildroot}%{_prefix}/lib/rpm/macros.d/macros.%{name}
+install -D -m 0644 data/macros.%{name} %{buildroot}%{_rpmmacrodir}/macros.%{name}
 
 %files
 %{_bindir}/*
-%{_prefix}/lib/python*/site-packages/meson*
-%{_mandir}/*/*
-%{_prefix}/lib/rpm/macros.d/macros.%{name}
+%dir %{python3_sitelib}/mesonbuild
+%{python3_sitelib}/mesonbuild/*
+%{python3_sitelib}/%{name}-*.egg-info
+%doc %{_mandir}/*/*
+%{_rpmmacrodir}/macros.%{name}
 %{_datadir}/polkit-1/actions/*.policy
