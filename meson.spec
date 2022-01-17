@@ -1,6 +1,6 @@
 Summary: A software build system
 Name: meson
-Version:	0.60.3
+Version:	0.61.1
 Release:	1
 URL: http://mesonbuild.com/
 License: Apache 2
