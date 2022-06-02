@@ -1,9 +1,9 @@
 Summary: A software build system
 Name: meson
-Version:	0.62.1
+Version:	0.62.2
 Release:	1
 URL: http://mesonbuild.com/
-License: Apache 2
+License: Apache-2.0
 Group: Development/Tools
 Source0: https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
 Patch0: meson-0.42.1-macros.patch
