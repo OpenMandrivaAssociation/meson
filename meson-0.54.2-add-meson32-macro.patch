@@ -10,7 +10,7 @@ diff -up meson-0.55.3/data/macros.meson.2~ meson-0.55.3/data/macros.meson
 +    %set_build_flags \
 +    export LANG="en_US.UTF-8" \
 +    export LC_ALL="en_US.UTF-8" \
-+    PKG_CONFIG_LIBDIR="%{_prefix}/lib/pkgconfig:%{_datadir}/pkgconfig:$PKG_CONFIG32_LIBDIR" PKG_CONFIG_PATH="%{_prefix}/lib/pkgconfig:%{_datadir}/pkgconfig:$PKG_CONFIG32_PATH" CC=${CC:-%{__cc}} CXX=${CXX:-%{__cxx}} CFLAGS="`echo $CFLAGS |sed -e 's, -m64,,g;s, -mx32,,g;s, -flto=thin,,g;s, -flto,,g'` -m32" CXXFLAGS="`echo $CXXFLAGS |sed -e 's, -m64,,g;s, -mx32,,g;s, -flto=thin,,g;s, -flto,,g'` -m32" LDFLAGS="`echo $LDFLAGS |sed -e 's, -m64,,g;s, -mx32,,g;s, -flto=thin,,;s, -flto,,g'` -m32" %{shrink:%{__meson} \
++    PKG_CONFIG_LIBDIR="%{_prefix}/lib/pkgconfig:%{_datadir}/pkgconfig:$PKG_CONFIG32_LIBDIR" PKG_CONFIG_PATH="%{_prefix}/lib/pkgconfig:%{_datadir}/pkgconfig:$PKG_CONFIG32_PATH" CC=${CC:-%{__cc}} CXX=${CXX:-%{__cxx}} CFLAGS="`echo $CFLAGS |sed -e 's, -m64,,g;s, -mx32,,g;s, -flto(=thin)?,,g'` -m32" CXXFLAGS="`echo $CXXFLAGS |sed -e 's, -m64,,g;s, -mx32,,g;s, -flto(=thin)?,,g'` -m32" LDFLAGS="`echo $LDFLAGS |sed -e 's, -m64,,g;s, -mx32,,g;s, -flto(=thin)?,,g'` -m32" %{shrink:%{__meson} \
 +        --buildtype=plain \
 +        --prefix=%{_prefix} \
 +        --libdir=%{_prefix}/lib \
