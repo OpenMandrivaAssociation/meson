@@ -1,6 +1,6 @@
 Summary: A software build system
 Name: meson
-Version:	0.63.3
+Version:	0.64.1
 Release:	1
 URL: http://mesonbuild.com/
 License: Apache-2.0
@@ -35,7 +35,7 @@ install -D -m 0644 data/macros.%{name} %{buildroot}%{_rpmmacrodir}/macros.%{name
 %{_bindir}/*
 %dir %{python3_sitelib}/mesonbuild
 %{python3_sitelib}/mesonbuild/*
-%{python3_sitelib}/%{name}-*.egg-info
+%{python3_sitelib}/%{name}-*.dist-info
 %doc %{_mandir}/*/*
 %{_rpmmacrodir}/macros.%{name}
 %{_datadir}/polkit-1/actions/*.policy
