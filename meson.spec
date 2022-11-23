@@ -9,11 +9,11 @@ Source0: https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{versio
 Patch0: meson-0.42.1-macros.patch
 Patch1: meson-0.54.2-add-meson32-macro.patch
 BuildRequires: python >= 3.0
-BuildRequires: python3dist(setuptools)
+BuildRequires: python3dist(pip)
 BuildArch: noarch
 Requires: ninja
 Requires: python >= 3.0
-Requires: python3dist(setuptools)
+Requires: python3dist(pip)
 
 %description
 Meson is an open source build system meant to be fast and
