@@ -1,13 +1,14 @@
 Summary: A software build system
 Name: meson
 Version: 1.0.1
-Release: 1
+Release: 2
 URL: http://mesonbuild.com/
 License: Apache-2.0
 Group: Development/Tools
 Source0: https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
 Patch0: meson-0.42.1-macros.patch
 Patch1: meson-0.54.2-add-meson32-macro.patch
+Patch2: meson-1.0.1-crosscompile-macros.patch
 BuildRequires: python >= 3.0
 BuildRequires: python3dist(pip)
 BuildArch: noarch

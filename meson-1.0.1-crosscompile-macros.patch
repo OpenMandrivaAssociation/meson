@@ -1,0 +1,16 @@
+diff -up meson-1.0.1/data/macros.meson.omv~ meson-1.0.1/data/macros.meson
+--- meson-1.0.1/data/macros.meson.omv~	2023-04-03 00:46:33.900688859 +0200
++++ meson-1.0.1/data/macros.meson	2023-04-03 00:49:15.985005230 +0200
+@@ -8,8 +8,12 @@
+     %set_build_flags \
+     export LANG="en_US.UTF-8" \
+     export LC_ALL="en_US.UTF-8" \
++%if %{cross_compiling} \
++    export CROSSCOMPILE_FILE="--cross-file=%{_prefix}/%{_target_platform}/share/meson/%{_target_platform}.cross" \
++%endif \
+     %{shrink:%{__meson} setup \
+         --buildtype=plain \
++	$CROSSCOMPILE_FILE \
+         --prefix=%{_prefix} \
+         --libdir=%{_libdir} \
+         --libexecdir=%{_libexecdir} \
