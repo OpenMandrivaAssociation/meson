@@ -7,7 +7,7 @@ diff -up meson-1.0.1/data/macros.meson.3~ meson-1.0.1/data/macros.meson
      export LC_ALL="en_US.UTF-8" \
 +%ifnarch noarch \
 +%if %{cross_compiling} \
-+    export CROSSCOMPILE_FILE="--cross-file=%{_prefix}/%{_target_platform}/share/meson/%{_target_platform}.cross" \
++    export CROSSCOMPILE_FILE="--cross-file=%{_datadir}/meson/toolchains/%{_target_platform}%{?prefer_gcc:-gcc}.cross" \
 +%endif \
 +%endif \
      %{shrink:%{__meson} setup \

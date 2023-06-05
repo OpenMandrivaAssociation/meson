@@ -1,7 +1,18 @@
+# Keep this in sync with the list of cross tools we build
+# in other packages (binutils, gcc, ...)
+%global targets aarch64-linux armv7hnl-linux i686-linux x86_64-linux x32-linux riscv32-linux riscv64-linux aarch64-linuxmusl armv7hnl-linuxmusl i686-linuxmusl x86_64-linuxmusl x32-linuxmusl riscv32-linuxmusl riscv64-linuxmusl aarch64-linuxuclibc armv7hnl-linuxuclibc i686-linuxuclibc x86_64-linuxuclibc x32-linuxuclibc riscv32-linuxuclibc riscv64-linuxuclibc aarch64-android armv7l-android armv8l-android x86_64-android i686-mingw32 x86_64-mingw32 ppc64le-linux ppc64le-linuxmusl ppc64le-linuxuclibc ppc64-linux ppc64-linuxmusl ppc64-linuxuclibc
+%global long_targets %(
+	for i in %{targets}; do
+		CPU=$(echo $i |cut -d- -f1)
+		OS=$(echo $i |cut -d- -f2)
+		echo -n "$(rpm --target=${CPU}-${OS} -E %%{_target_platform}) "
+	done
+)
+
 Summary: A software build system
 Name: meson
 Version: 1.1.1
-Release: 1
+Release: 2
 URL: http://mesonbuild.com/
 License: Apache-2.0
 Group: Development/Tools
@@ -32,6 +43,87 @@ user friendly.
 # install meson rpm macro helper
 install -D -m 0644 data/macros.%{name} %{buildroot}%{_rpmmacrodir}/macros.%{name}
 
+# Create toolchain files for supported and semi-supported
+# crosscompilers...
+mkdir -p %{buildroot}%{_datadir}/meson/toolchains
+for i in %{long_targets}; do
+	CPU=$(echo ${i}|cut -d- -f1)
+	ARCH=$CPU
+	OS=$(echo ${i}|cut -d- -f3)
+	ENDIAN=little
+	EXTRAS_binaries=""
+	EXTRAS_host_machine=""
+	case $ARCH in
+	arm*)
+		ARCH=arm
+		;;
+	i?86|pentium?|athlon)
+		ARCH=x86
+		;;
+	znver*|x86_64*)
+		ARCH=x86_64
+		;;
+	ppc|ppc64|mips*)
+		ENDIAN=big
+		ARCH=ppc64
+		;;
+	ppc64le*)
+		ARCH=ppc64
+		;;
+	esac
+	LIB=lib64
+	if echo $ARCH |grep -qE '(arm|32|i.86)'; then
+		LIB=lib
+	fi
+	if echo $OS |grep mingw; then
+		EXTRAS_binaries="exe_wrapper = 'wine'
+"
+		OS=windows
+	fi
+
+	# ipc_rmid_deferred_release is to make cairo happy
+	cat >%{buildroot}%{_datadir}/meson/toolchains/${i}.cross <<EOF
+[binaries]
+c = [ 'clang', '-target', '$i', '--sysroot', '%{_prefix}/$i' ]
+cpp = [ 'clang++', '-target', '$i', '--sysroot', '%{_prefix}/$i' ]
+ar = 'llvm-ar'
+ranlib = 'llvm-ranlib'
+strip = 'llvm-strip'
+pkgconfig = '%{_bindir}/pkg-config'
+$EXTRAS_binaries
+[host_machine]
+system = '$OS'
+cpu_family = '$ARCH'
+cpu = '$CPU'
+endian = '$ENDIAN'
+$EXTRAS_host_machine
+[properties]
+sys_root = '%{_prefix}/$i'
+pkg_config_libdir = '%{_prefix}/$i%{_prefix}/$LIB/pkgconfig'
+ipc_rmid_deferred_release = true
+EOF
+	cat >%{buildroot}%{_datadir}/meson/toolchains/${i}-gcc.cross <<EOF
+[binaries]
+c = '%{_bindir}/$i-gcc'
+cpp = '%{_bindir}/$i-g++'
+ar = '%{_bindir}/$i-ar'
+ranlib = '%{_bindir}/$i-ranlib'
+strip = '%{_bindir}/$i-strip'
+pkgconfig = '%{_bindir}/pkg-config'
+$EXTRAS_binaries
+[host_machine]
+system = '$OS'
+cpu_family = '$ARCH'
+cpu = '$CPU'
+endian = '$ENDIAN'
+$EXTRAS_host_machine
+[properties]
+sys_root = '%{_prefix}/$i'
+pkg_config_libdir = '%{_prefix}/$i%{_prefix}/$LIB/pkgconfig'
+ipc_rmid_deferred_release = true
+EOF
+done
+
 %files
 %{_bindir}/*
 %dir %{python3_sitelib}/mesonbuild
@@ -40,3 +132,4 @@ install -D -m 0644 data/macros.%{name} %{buildroot}%{_rpmmacrodir}/macros.%{name
 %doc %{_mandir}/*/*
 %{_rpmmacrodir}/macros.%{name}
 %{_datadir}/polkit-1/actions/*.policy
+%{_datadir}/meson
