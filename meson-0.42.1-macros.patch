@@ -1,10 +1,10 @@
-diff -up meson-1.0.0/data/macros.meson.1~ meson-1.0.0/data/macros.meson
---- meson-1.0.0/data/macros.meson.1~	2022-12-23 17:13:43.000000000 +0100
-+++ meson-1.0.0/data/macros.meson	2022-12-24 15:15:48.399104271 +0100
-@@ -1,9 +1,13 @@
- %__meson %{_bindir}/meson
+diff -up meson-1.4.0/data/macros.meson.1~ meson-1.4.0/data/macros.meson
+--- meson-1.4.0/data/macros.meson.1~	2024-03-12 18:57:31.000000000 +0100
++++ meson-1.4.0/data/macros.meson	2024-03-12 23:43:43.781364641 +0100
+@@ -2,9 +2,13 @@
  %__meson_wrap_mode nodownload
  %__meson_auto_features enabled
+ %__meson_verbose 1
 +%_vpath_srcdir .
 +%_vpath_builddir build
  
@@ -15,7 +15,7 @@ diff -up meson-1.0.0/data/macros.meson.1~ meson-1.0.0/data/macros.meson
      %{shrink:%{__meson} setup \
          --buildtype=plain \
          --prefix=%{_prefix} \
-@@ -25,6 +29,7 @@
+@@ -26,6 +30,7 @@
          %{nil}}
  
  %meson_build \
@@ -23,7 +23,7 @@ diff -up meson-1.0.0/data/macros.meson.1~ meson-1.0.0/data/macros.meson
      %{shrink:%{__meson} compile \
          -C %{_vpath_builddir} \
          -j %{_smp_build_ncpus} \
-@@ -32,6 +37,7 @@
+@@ -33,6 +38,7 @@
          %{nil}}
  
  %meson_install \
