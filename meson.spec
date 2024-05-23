@@ -12,20 +12,21 @@
 Summary: A software build system
 Name: meson
 Version: 1.4.0
-Release: 1
+Release: 2
 URL: http://mesonbuild.com/
 License: Apache-2.0
 Group: Development/Tools
 Source0: https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
+Source1: macros.buildsys.meson
 Patch0: meson-0.42.1-macros.patch
 Patch1: meson-0.54.2-add-meson32-macro.patch
 Patch2: meson-1.0.1-crosscompile-macros.patch
 BuildRequires: python >= 3.0
-BuildRequires: python3dist(pip)
+BuildRequires: python%{pyver}dist(pip)
 BuildArch: noarch
 Requires: ninja
 Requires: python >= 3.0
-Requires: python3dist(pip)
+Requires: python%{pyver}dist(pip)
 
 %description
 Meson is an open source build system meant to be fast and
@@ -42,6 +43,7 @@ user friendly.
 
 # install meson rpm macro helper
 install -D -m 0644 data/macros.%{name} %{buildroot}%{_rpmmacrodir}/macros.%{name}
+install -D -m 0644 %{S:1} %{buildroot}%{_rpmmacrodir}/macros.buildsys.%{name}
 
 # Create toolchain files for supported and semi-supported
 # crosscompilers...
@@ -131,5 +133,6 @@ done
 %{python3_sitelib}/%{name}-*.dist-info
 %doc %{_mandir}/*/*
 %{_rpmmacrodir}/macros.%{name}
+%{_rpmmacrodir}/macros.buildsys.%{name}
 %{_datadir}/polkit-1/actions/*.policy
 %{_datadir}/meson
