@@ -14,7 +14,7 @@
 Summary: A software build system
 Name: meson
 Version: 1.9.2
-Release: 1
+Release: 2
 URL: https://mesonbuild.com/
 License: Apache-2.0
 Group: Development/Tools
