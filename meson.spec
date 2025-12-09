@@ -25,6 +25,7 @@ Patch1: meson-0.54.2-add-meson32-macro.patch
 Patch2: meson-1.0.1-crosscompile-macros.patch
 BuildRequires: python >= 3.0
 BuildRequires: python%{pyver}dist(pip)
+BuildRequires: python%{pyver}dist(setuptools)
 BuildArch: noarch
 Requires: ninja
 Requires: python >= 3.0
