@@ -13,13 +13,12 @@
 
 Summary: A software build system
 Name: meson
-Version: 1.9.2
-Release: 2
+Version: 1.10.0
+Release: 1
 URL: https://mesonbuild.com/
 License: Apache-2.0
 Group: Development/Tools
-Source0: https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
-Source1: macros.buildsys.meson
+Source0: https://github.com/mesonbuild/meson/releases/download/%{version}/meson-%{version}.tar.gz
 Patch0: meson-0.42.1-macros.patch
 Patch1: meson-0.54.2-add-meson32-macro.patch
 Patch2: meson-1.0.1-crosscompile-macros.patch
@@ -46,7 +45,6 @@ user friendly.
 
 # install meson rpm macro helper
 install -D -m 0644 data/macros.%{name} %{buildroot}%{_rpmmacrodir}/macros.%{name}
-install -D -m 0644 %{S:1} %{buildroot}%{_rpmmacrodir}/macros.buildsys.%{name}
 
 # Create toolchain files for supported and semi-supported
 # crosscompilers...
@@ -131,11 +129,10 @@ done
 
 %files
 %{_bindir}/*
-%dir %{python3_sitelib}/mesonbuild
-%{python3_sitelib}/mesonbuild/*
-%{python3_sitelib}/%{name}-*.dist-info
+%dir %{python_sitelib}/mesonbuild
+%{python_sitelib}/mesonbuild/*
+%{python_sitelib}/%{name}-*.dist-info
 %doc %{_mandir}/*/*
 %{_rpmmacrodir}/macros.%{name}
-%{_rpmmacrodir}/macros.buildsys.%{name}
 %{_datadir}/polkit-1/actions/*.policy
 %{_datadir}/meson
