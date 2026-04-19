@@ -1,6 +1,6 @@
-diff -up meson-1.4.0/data/macros.meson.1~ meson-1.4.0/data/macros.meson
---- meson-1.4.0/data/macros.meson.1~	2024-03-12 18:57:31.000000000 +0100
-+++ meson-1.4.0/data/macros.meson	2024-03-12 23:43:43.781364641 +0100
+diff -up meson-1.11.0/data/macros.meson.1~ meson-1.11.0/data/macros.meson
+--- meson-1.11.0/data/macros.meson.1~	2026-04-13 16:04:57.000000000 +0200
++++ meson-1.11.0/data/macros.meson	2026-04-19 19:06:04.607182157 +0200
 @@ -2,9 +2,13 @@
  %__meson_wrap_mode nodownload
  %__meson_auto_features enabled
@@ -22,7 +22,7 @@ diff -up meson-1.4.0/data/macros.meson.1~ meson-1.4.0/data/macros.meson
 +    export LC_ALL="en_US.UTF-8" \
      %{shrink:%{__meson} compile \
          -C %{_vpath_builddir} \
-         -j %{_smp_build_ncpus} \
+         %{_smp_mflags} \
 @@ -33,6 +38,7 @@
          %{nil}}
  
